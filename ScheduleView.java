@@ -41,16 +41,20 @@ public class ScheduleView {
                     + ", " + rs.getString(4)); 
                 System.out.println("Course 1: " + rs.getString(5) + 
                         "\t Start time: " + rs.getTime(6) +
-                        "\t End time: " + rs.getTime(7));
-                System.out.println("Course 2: " + rs.getString(8) +
-                        "\t Start time: " + rs.getTime(9) +
-                        "\t End time: " + rs.getTime(10));
-                System.out.println("Course 3: " + rs.getString(11) + 
-                        "\t Start time: " + rs.getTime(12) +
-                        "\t End time: " + rs.getTime(13));
-                System.out.println("Course 4: " + rs.getString(14) + 
-                        "\t Start time: " + rs.getTime(15) +
-                        "\t End time: " + rs.getTime(16));
+                        "\t End time: " + rs.getTime(7))
+                        "\t" + rs.getString(8);
+                System.out.println("Course 2: " + rs.getString(9) +
+                        "\t Start time: " + rs.getTime(10) +
+                        "\t End time: " + rs.getTime(11))
+                        "\t" + rs.getString(12);
+                System.out.println("Course 3: " + rs.getString(13) + 
+                        "\t Start time: " + rs.getTime(14) +
+                        "\t End time: " + rs.getTime(15))
+                        "\t" + rs.getString(16);
+                System.out.println("Course 4: " + rs.getString(17) + 
+                        "\t Start time: " + rs.getTime(18) +
+                        "\t End time: " + rs.getTime(19))
+                        "\t" + rs.getString(20);
             }
         }
 
