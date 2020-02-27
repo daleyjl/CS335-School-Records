@@ -48,7 +48,7 @@ public class Student {
             Connection connection = recordConnector();
             Statement newStudent = connection.createStatement();
             newStudent.execute(
-                    "INSERT INTO STUDENT" + "(STUDENT_ID, LAST_NAME, FIRST_NAME, EMAIL, PHONE, GPA)" + " VALUES ('" + idNum +
+                    "INSERT INTO STUDENT" + "(STUDENT_ID, LAST_NAME, FIRST_NAME, EMAIL, PHONE_NUMBER, GPA)" + " VALUES ('" + idNum +
                             "', '" + lastName + "', '" + firstName + "', '" + email + "', '" + phoneNum + "', '" + gpa + "')"
             );
         }catch(Exception e){

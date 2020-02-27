@@ -11,18 +11,18 @@ public class StudentRecords {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://dany.simmons.edu:3306/33501sp20_daleyjl?characterEncoding=UTF-8",
+                    "jdbc:mysql://dany.simmons.edu:3306/33501sp20_ciccareg?characterEncoding=UTF-8",
                     user, password);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    // Adds a book to the Book table.
+    /* ATM none of this is needed-- the add student function performs this action
     public void save(String[] cols) {
         try {
             Statement insertBook = connection.createStatement();
             insertBook.execute(
-                    "INSERT INTO STUDENTS " +
+                    "INSERT INTO STUDENT " +
                             "(STUDENT_ID, LAST_NAME, FIRST_NAME, PHONE_NUMBER, EMAIL, GPA)" +
                             " VALUES ('" + cols[0] + "', '" + cols[1] + "', '" + cols[2] + "', '" + cols[3] + "', '" +
                             cols[4] + "', " + Float.parseFloat(cols[5])+ ") ");
@@ -30,7 +30,7 @@ public class StudentRecords {
             e.printStackTrace();
         }
     }
-
+*/
     // Reads and prints all rows in the Book table.
     public void listCourses() {
         try {
