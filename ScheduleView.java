@@ -3,6 +3,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+/*
+*Connect to mySQL
+*View only selected column from the database using the password 
+*/
+
 public class ScheduleView {
     private Connection connection;
     ScheduleView(String user, String password){
@@ -30,20 +35,20 @@ public class ScheduleView {
             );
             int course = 1;
             while (rs.next()){
-                System.out.println("Student ID: " + rs.getString(1)); //ID
-                System.out.println("Semester: " + rs.getString(2)); //semester
+                System.out.println("Student ID: " + rs.getString(1)); 
+                System.out.println("Semester: " + rs.getString(2)); 
                 System.out.println(rs.getString(3)
-                    + ", " + rs.getString(4)); //Student last and first name
-                System.out.println("Course 1: " + rs.getString(5) + //course 1
+                    + ", " + rs.getString(4)); 
+                System.out.println("Course 1: " + rs.getString(5) + 
                         "\t Start time: " + rs.getTime(6) +
                         "\t End time: " + rs.getTime(7));
-                System.out.println("Course 2: " + rs.getString(8) + //course 2
+                System.out.println("Course 2: " + rs.getString(8) +
                         "\t Start time: " + rs.getTime(9) +
                         "\t End time: " + rs.getTime(10));
-                System.out.println("Course 3: " + rs.getString(11) + //course 3
+                System.out.println("Course 3: " + rs.getString(11) + 
                         "\t Start time: " + rs.getTime(12) +
                         "\t End time: " + rs.getTime(13));
-                System.out.println("Course 4: " + rs.getString(14) + //course 4
+                System.out.println("Course 4: " + rs.getString(14) + 
                         "\t Start time: " + rs.getTime(15) +
                         "\t End time: " + rs.getTime(16));
             }
