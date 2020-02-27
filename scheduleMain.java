@@ -4,15 +4,11 @@ import java.sql.DriverManager;
 public class scheduleMain {
     public static void main (String args[]){
         Scanner input = new Scanner(System.in);
-        System.out.println("User: ");
-        String user = input.next();
-        System.out.println("Password: ");
-        String pass = input.next();
-        ScheduleView schedule = new ScheduleView(user, pass);
+        ScheduleView schedule = new ScheduleView("tranat", "1858423");
         System.out.println("Insert semester: ");
-        String sem = input.next();
+        String sem = input.nextLine();
         System.out.println("Insert ID: ");
-        String ID = input.next();
-        schedule.listCourse(sem, ID);
+        String id = input.nextLine();
+        schedule.listCourse(sem, id);
     }
 }
