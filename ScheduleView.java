@@ -24,7 +24,6 @@ public class ScheduleView {
                             "COURSE_4, Start_Time_4, End_Time_4, Days_4," + " FROM SCHEDULE," +
                             "WHERE STUDENT_ID LIKE ID AND WHERE SEMESTER LIKE sem"
             );
-            int course = 1;
             while (rs.next()){
                 System.out.println("Student ID: " + rs.getString(1)); 
                 System.out.println("Semester: " + rs.getString(2)); 
