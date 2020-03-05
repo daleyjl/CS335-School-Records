@@ -2,7 +2,7 @@ import java.util.*;
 
 public class CommandLineInterface {
     public static void main (String [] args){
-        StudentRecords studentRec = new StudentRecords("daleyjl", "1768443");
+        StudentRecords studentRec = new StudentRecords("ciccareg", "1690812");
         Scanner input= new Scanner(System.in);
         System.out.println("First Name: ");
         String f_name=input.next();
@@ -88,18 +88,19 @@ public class CommandLineInterface {
         System.out.println("Phone Number: ");
         String phoneNum= input.next();
         System.out.println("GPA: ");
-        String gpa= input.next();
+        Double gpa= input.nextDouble();
 
         System.out.println(student_id+"\n"+f_name+" "+l_name+"\n"+email+"\n"+phoneNum+"\n"+gpa+"\n\n\nAdd Student? [yes]/[no]");
 
         String answer=input.next();
 
-        String[] student_info= new String[]{student_id, l_name, f_name, email, phoneNum, gpa};
+        String[] student_info= new String[]{student_id, l_name, f_name, email, phoneNum, gpa.toString()};
 
-        if (answer.equals("yes")){
-       /* Student newStudent= new Student(student_id, l_name, f_name, phoneNum, email, gpa);
-        newStudent.addStudent();*/
+        if (answer.equals("yes")) {
+            Student newStudent = new Student();
+            newStudent.addStudent(student_id, l_name, f_name, email, phoneNum, gpa);
             System.out.println("Student added!");
-            studentRec.save(student_info);}
+            //    studentRec.save(student_info);}  Function eliminated, happens within addStudent
+        }
     }
 }
