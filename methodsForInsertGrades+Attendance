@@ -1,0 +1,88 @@
+//these were in StudentInformation
+    public void listStudentsInCourse(String course_id){
+        try {
+            Statement selectStudents = connection.createStatement();
+            ResultSet rs = selectStudents.executeQuery(
+                    "SELECT Student_ID, Last_Name, First_Name, Course_1, Course_2, Course_3, Course_4"+" FROM SCHEDULE1");
+            // Iterate over result set and print each book description.
+            int count=1;
+            while (rs.next()) {
+                if(rs.getString(4).equals(course_id)||rs.getString(5).equals(course_id)||rs.getString(6).equals(course_id)||rs.getString(7).equals(course_id)){
+                    System.out.println(count+": "+rs.getString(3)+", "+rs.getString(2)+"    Student ID: "+rs.getInt(1));
+                    count++;
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    //selects the courses inline with the correct student ID in SQL, finds which one matches, inserts grade for that course (1, 2, 3, or 4) - connection with SQL stopped working before this worked
+    public void insertGrade(int student_id,String course_id,double grade){
+        try {
+            String classNumber = "0";
+            Statement selectStudents = connection.createStatement();
+            ResultSet rs = selectStudents.executeQuery(
+                    "SELECT Course_1, Course_2, Course_3, Course_4 "+
+                    "FROM SCHEDULE1 "+
+                    "WHERE Student_ID = '"+student_id+"';");
+            System.out.println(rs.getString(1));
+            if(rs.getString(1).equals(course_id)){
+                classNumber = "1";
+            }
+            else if(rs.getString(2).equals(course_id)){
+                classNumber = "2";
+            }
+            else if(rs.getString(3).equals(course_id)){
+                classNumber = "3";
+            }
+            else if(rs.getString(4).equals(course_id)){
+                classNumber = "4";
+            }
+            if(classNumber!="0"){
+                Statement insertGrade = connection.createStatement();
+                insertGrade.execute(
+                        "INSERT INTO STUDENTS " +
+                                "(Grade_"+classNumber+")" +
+                                " VALUES ('" +grade+ ") ");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //finds correct course with the same method used in insertGrade, then inserts attendance instead (if grade and attendance weren't different data types, these methods could be combined) - my connection isn't working, so this has not been tested
+    public void insertAttendance(int student_id,String course_id,String attendance){
+        try {
+            String classNumber = "0";
+            Statement selectStudents = connection.createStatement();
+            ResultSet rs = selectStudents.executeQuery(
+                    "SELECT Course_1, Course_2, Course_3, Course_4 "+
+                            "FROM SCHEDULE1 "+
+                            "WHERE Student_ID = '"+student_id+"';");
+            System.out.println(rs.getString(1));
+            if(rs.getString(1).equals(course_id)){
+                classNumber = "1";
+            }
+            else if(rs.getString(2).equals(course_id)){
+                classNumber = "2";
+            }
+            else if(rs.getString(3).equals(course_id)){
+                classNumber = "3";
+            }
+            else if(rs.getString(4).equals(course_id)){
+                classNumber = "4";
+            }
+            if(classNumber!="0"){
+                Statement insertAttendance = connection.createStatement();
+                insertAttendance.execute(
+                        "INSERT INTO STUDENTS " +
+                                "(Absences_"+classNumber+")" +
+                                " VALUES ('" +attendance+ ") ");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
