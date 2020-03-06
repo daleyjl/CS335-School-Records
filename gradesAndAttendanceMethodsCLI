@@ -1,0 +1,25 @@
+//these were in the CommandLineInterface
+    public static void inputGrade(StudentRecords studentRec){
+        Scanner input= new Scanner(System.in);
+        System.out.println("Enter Course ID: ");
+        String course_id = input.next();
+        studentRec.listStudentsInCourse(course_id);
+        System.out.println("Enter student ID to input that student's grade: "); //switch ID to an int, then add to print statement
+        int student_id = input.nextInt();
+        System.out.println("Enter student's grade (out of 4.0): ");
+        double grade = input.nextDouble(); //input checks for user error (try catch?)
+        studentRec.insertGrade(student_id,course_id,grade);
+        /* TODO:  make method that inserts grade into sql database, give user the option to insert more grades, recursive?*/
+    }
+
+    public static void inputAttendance(StudentRecords studentRec){
+        Scanner input= new Scanner(System.in);
+        System.out.println("Enter Course ID: ");
+        String course_id = input.next();
+        studentRec.listStudentsInCourse(course_id);
+        System.out.println("Enter student ID to input attendance: "); //switch ID to an int, then add to print statement
+        int student_id = input.nextInt();
+        System.out.println("Enter attendance: ");
+        String attendance = input.next(); //input checks for user error (try catch?)
+        studentRec.insertAttendance(student_id,course_id,attendance);
+    }
