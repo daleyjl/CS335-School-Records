@@ -3,14 +3,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 /* Java DOC:
-* */
+ * */
 public class TranscriptView {
     private Connection connection;
     TranscriptView(String user, String password) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://dany.simmons.edu:3306/33501sp20_tranat?characterEncoding=UTF-8",
+                    "jdbc:mysql://dany.simmons.edu:3306/33501sp20_daleyjl?characterEncoding=UTF-8",
                     user, password);
         } catch (Exception e) {
             e.printStackTrace();
@@ -27,7 +27,7 @@ public class TranscriptView {
                             "Course_3, Grade_3, Absences_3, " +
                             "Course_4, Grade_4, Absences_4, " +
                             "Grade_Overall" +
-                            " FROM Schedule " +
+                            " FROM SCHEDULES " +
                             "WHERE Student_ID ='" + ID + "';"
 
             );
