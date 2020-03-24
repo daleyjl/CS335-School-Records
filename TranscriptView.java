@@ -2,8 +2,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-/* Java DOC:
- * */
+
+/** TranscriptView Class and Methods
+ * @author An
+ */
 public class TranscriptView {
     private Connection connection;
     TranscriptView(String user, String password) {
@@ -19,7 +21,8 @@ public class TranscriptView {
     public void transcript (String ID){
         try {
             Statement selectID = connection.createStatement();
-            System.out.println("Here is your transcript");
+            System.out.println("Here is your transcript:");
+            //gets all of their grades in the system
             ResultSet rs = selectID.executeQuery(
                     "SELECT Student_ID, Semester, Last_Name, First_Name, " +
                             "Course_1, Grade_1, Absences_1, " +
@@ -32,6 +35,7 @@ public class TranscriptView {
 
             );
             while(rs.next()){
+                //outputs all of their info
                 System.out.println("Student ID: " + rs.getString(1));
                 System.out.println("Semesters attended: " + rs.getString(2));
                 System.out.println(rs.getString(3) + ", " + rs.getString(4));

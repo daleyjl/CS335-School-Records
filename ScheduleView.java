@@ -2,14 +2,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-/*
- * connect to mySQL
- * list the selected columns using ID and semester
- * @param1: Simmons username: tranat
- * @param2: Password to database
- * @param3: Semester
- * @param4: student ID
- * */
+
+/** ScheduleView Class and methods
+ * @author An
+ */
 public class ScheduleView {
     private Connection connection;
     ScheduleView(String user, String password){
@@ -28,6 +24,7 @@ public class ScheduleView {
         try {
             Statement selectID = connection.createStatement();
             System.out.println("Here are the courses that you applied");
+            //gets courses, times, and days for the student in the specific semester
             ResultSet rs = selectID.executeQuery(
                     "SELECT Student_ID, Semester, Last_Name, First_Name, " +
                             "COURSE_1, Start_Time1, End_Time1, Days1," +
@@ -39,6 +36,7 @@ public class ScheduleView {
 
             );
             while (rs.next()){
+                //lists formatted schedule for the student
                 System.out.println("Student ID: " + rs.getInt(1));
                 System.out.println("Semester: " + rs.getString(2));
                 System.out.println(rs.getString(3)

@@ -1,9 +1,15 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
 
+/** Student Class and Methods.
+ * @author Theo
+ * @author Jamie
+ */
+
 public class Student {
+    private Connection connection;
+    //attributes
     private String firstName;
     private String lastName;
     public String idNum;
@@ -12,12 +18,12 @@ public class Student {
     private String phoneNum;
 
     public Student(){
-        firstName="F";
-        lastName="L";
+        firstName="";
+        lastName="";
         idNum=null;
-        email="nope@nope.com";
+        email="";
         gpa=0.0;
-        phoneNum="None";
+        phoneNum="";
     }
 
     public Student(String f, String l, String id, String em, double gradepa, String p){
@@ -29,26 +35,26 @@ public class Student {
         phoneNum=p;
     }
 
-    // This initializes database connection. We yoinked this directly from the Books project example.
+    // This initializes database connection. We took this directly from the Books project example.
     Connection recordConnector() {
-        Connection connection = null;
+        //connection to DB
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://dany.simmons.edu:3306/33501sp20_ciccareg?characterEncoding=UTF-8",
-                    "ciccareg", "1690812");
+                    "jdbc:mysql://dany.simmons.edu:3306/33501sp20_daleyjl?characterEncoding=UTF-8",
+                    "daleyjl", "1768443");
         } catch (Exception e) {
             e.printStackTrace();
         }
         return connection;
     }
-
-    public void addStudent(String idNum, String lastName, String firstName, String email, String phoneNum, double gpa){
+    public void addStudent(){
+        //adds student attributes to DB
         try {
             Connection connection = recordConnector();
             Statement newStudent = connection.createStatement();
             newStudent.execute(
-                    "INSERT INTO STUDENT" + "(STUDENT_ID, LAST_NAME, FIRST_NAME, EMAIL, PHONE, GPA)" + " VALUES ('" + idNum +
+                    "INSERT INTO STUDENTS" + "(STUDENT_ID, LAST_NAME, FIRST_NAME, EMAIL, PHONE_NUMBER, GPA)" + " VALUES ('" + idNum +
                             "', '" + lastName + "', '" + firstName + "', '" + email + "', '" + phoneNum + "', '" + gpa + "')"
             );
         }catch(Exception e){
@@ -57,23 +63,7 @@ public class Student {
 
     }
 
-    public void getStudent(String idNumTry){
-        try {
-            Connection connection= recordConnector();
-            Statement getStudent = connection.createStatement();
-            ResultSet stu = getStudent.executeQuery(
-                    "SELECT LAST_NAME, FIRST_NAME, EMAIL, PHONE_NUMBER, GPA FROM STUDENT WHERE " +
-                    idNumTry + " = STUDENT_ID");
-        idNum=idNumTry;
-        lastName=stu.getString(1);
-        firstName=stu.getString(2);
-        email=stu.getString(3);
-        phoneNum=stu.getString(4);
-        gpa=stu.getInt(5);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    //get student attribute values
 
     public double getGPA() {
         return gpa;
