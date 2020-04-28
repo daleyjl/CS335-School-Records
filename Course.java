@@ -1,101 +1,94 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-
-/** Course Class and methods
- * @author Jamie
+/**Course Class
+ * @author Theo
  */
 
+import java.util.*;
+
 public class Course {
-    private Connection connection;
-    //attributes
-    private String start_time;
-    private String end_time;
-    public String idNum;
+    private String course_id;
     private String name;
-    private String days;
+    private ArrayList<String> days;
+    private String startTime;
+    private String endTime;
+    private String faculty;
     private String semester;
-    private String instructor;
     private int capacity;
+    private double grade;
+    private String absences;
 
     public Course(){
-        //constructor
-        start_time="";
-        end_time="";
-        idNum=null;
-        days="";
-        semester="";
-        instructor="";
+        course_id=null;
         name="";
+        days=null;
+        startTime="";
+        endTime="";
+        faculty="";
+        semester="";
         capacity=0;
+        grade=0;
+        absences="0";
     }
 
-    public Course(String id, String start, String end, String n, String d, String s, String i, int c){
-        //constructor
-        idNum=id;
-        start_time=start;
-        end_time=end;
-        name=n;
-        days=d;
-        semester=s;
-        instructor=i;
-        capacity=c;
+    public Course(String newCourse_id, String courseName, ArrayList<String> courseDays, String newStartTime, String newEndTime,
+                  String facultyName, String newSemester, int newCapacity){
+        course_id=newCourse_id;
+        name=courseName;
+        days=courseDays;
+        startTime=newStartTime;
+        endTime=newEndTime;
+        faculty=facultyName;
+        semester=newSemester;
+        capacity=newCapacity;
+        grade=0;
+        absences="0";
     }
 
-    // This initializes database connection. We took this directly from the Books project example.
-    Connection recordConnector() {
-        //connection to DB
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(
-                    "jdbc:mysql://dany.simmons.edu:3306/33501sp20_daleyjl?characterEncoding=UTF-8",
-                    "daleyjl", "1768443");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return connection;
-    }
-    public void addCourse(){
-        //adds attributes to DB
-        try {
-            Connection connection = recordConnector();
-            Statement newStudent = connection.createStatement();
-            newStudent.execute(
-                    "INSERT INTO COURSES" + "(COURSE_ID, START_TIME, END_TIME, COURSE_NAME, DAYS, SEMESTER, INSTRUCTOR, CAPACITY)" + " VALUES ('" + idNum +
-                            "', '" + start_time + "', '" + end_time + "', '" + name + "', '" + days + "', '" + semester + "', '" + instructor+ "', '" + capacity+"')"
-            );
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
+    public ArrayList getDays() {
+        return days;
     }
 
-    //get attribute values for the student
-
-    public String getStart_time() {
-        return start_time;
+    public double getGrade() {
+        return grade;
     }
 
-    public String getEnd_time(){
-        return end_time;
+    public String getAbsences() {
+        return absences;
     }
 
-    public String geName() {
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public String getCourse_id() {
+        return course_id;
+    }
+
+    public String getName() {
         return name;
     }
 
-    public String getDays() {
-        return days;
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public String getFaculty() {
+        return faculty;
     }
 
     public String getSemester() {
         return semester;
     }
-    public String getInstructor() {
-        return instructor;
-    }
-    public int getCapacity() {
-        return capacity;
+
+    public String getStartTime() {
+        return startTime;
     }
 
+    public void setAbsences(String newAbsences) {
+        this.absences = newAbsences;
+    }
+
+    public void setGrade(double newGrade) {
+        this.grade = newGrade;
+    }
 }
+
